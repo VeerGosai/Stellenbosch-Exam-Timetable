@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Visby Round Bold';
+    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Visby Round Extra Bold';
+    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Extra%20Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Visby Round Heavy';
+    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Heavy.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Visby Round Regular';
+    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Regular.otf') format('opentype');
+}
+
+body {
+    font-family: 'Visby Round Regular', sans-serif;
+    padding: 20px;
+    background: linear-gradient(to right, #f5f5f7, #e3e3e8);
+    color: #333;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input:focus {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    color: #333;
+    font-family: 'Visby Round Regular', sans-serif;
+}
+
+li:hover {
+    background: #f0f0f5;
+    transform: translateX(5px);
+}
+
+#schedule {
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Visby Round Regular', sans-serif;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+th {
+    background: #f0f0f5;
+    color: #333;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-family: 'Visby Round Extra Bold', sans-serif;
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #1d1d1f;
+}
+
+div#schedule h3 {
+    font-family: 'Visby Round Heavy', sans-serif;
+    color: #1d1d1f;
+}
