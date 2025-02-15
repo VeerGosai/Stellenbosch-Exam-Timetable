@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Schedule</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 20px;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            border: 1px solid #ddd;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s ease-in-out;
+            color: black;
+        }
+        li:hover {
+            background: #4facfe;
+            color: white;
+        }
+        #schedule {
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: black;
+        }
+        th {
+            background: #00f2fe;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h2>Search for a Subject</h2>
+    <input type="text" id="search" placeholder="Search for a subject...">
+    <ul id="results"></ul>
+    <div id="schedule"></div>
+
+    <script>
+        let subjects = [];
+        
+        async function fetchSubjects() {
+            const response = await fetch('subjects.csv');
+            const text = await response.text();
+            subjects = text.split('\n').map(s => s.trim()).filter(s => s);
+        }
+
+        function filterSubjects(query) {
+            return subjects.filter(subject => subject.toLowerCase().includes(query.toLowerCase()) || 
+                subject.toLowerCase().startsWith(query.toLowerCase()));
+        }
+
+        document.getElementById('search').addEventListener('input', function() {
+            const query = this.value;
+            const results = filterSubjects(query);
+            const resultsList = document.getElementById('results');
+            resultsList.innerHTML = '';
+            results.forEach(subject => {
+                const li = document.createElement('li');
+                li.textContent = subject;
+                li.onclick = () => loadSchedule(subject);
+                resultsList.appendChild(li);
+            });
+        });
+
+        async function loadSchedule(subject) {
+            const files = ['A1.csv', 'A2.csv', 'A3.csv'];
+            let allSchedules = [];
+            let header = [];
+            
+            for (let file of files) {
+                const response = await fetch(file);
+                const text = await response.text();
+                const rows = text.split('\n').map(row => row.split(','));
+                if (rows.length > 0 && header.length === 0) header = rows[0];
+                
+                const filteredRows = rows.filter(row => row.some(cell => cell && cell.includes(subject)));
+                allSchedules = allSchedules.concat(filteredRows);
+            }
+            
+            const scheduleDiv = document.getElementById('schedule');
+            scheduleDiv.innerHTML = `<h3>Exam Schedule for ${subject}</h3>`;
+            
+            if (allSchedules.length > 0) {
+                let table = '<table><tr>';
+                header.forEach(col => table += `<th>${col}</th>`);
+                table += '</tr>';
+                allSchedules.forEach(row => {
+                    table += '<tr>';
+                    row.forEach(cell => table += `<td>${cell}</td>`);
+                    table += '</tr>';
+                });
+                table += '</table>';
+                scheduleDiv.innerHTML += table;
+            } else {
+                scheduleDiv.innerHTML += '<p>No schedule found.</p>';
+            }
+        }
+
+        fetchSubjects();
+    </script>
+</body>
+</html>
