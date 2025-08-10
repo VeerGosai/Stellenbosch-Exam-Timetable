@@ -1,148 +1,291 @@
-@font-face {
-    font-family: 'Visby Round Bold';
-    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Bold.otf') format('opentype');
-}
-@font-face {
-    font-family: 'Visby Round Extra Bold';
-    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Extra%20Bold.otf') format('opentype');
-}
-@font-face {
-    font-family: 'Visby Round Heavy';
-    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Heavy.otf') format('opentype');
-}
-@font-face {
-    font-family: 'Visby Round Regular';
-    src: url('https://raw.githubusercontent.com/VeerGosai/SA-Gov-Status/main/Fonts/Visby%20Round%20Regular.otf') format('opentype');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: 'Visby Round Regular', sans-serif;
-    padding: 20px;
-    background: linear-gradient(to right, #f5f5f7, #e3e3e8);
+    background-color: #f5f5f5;
     color: #333;
-    text-align: center;
-    transition: background 0.3s ease-in-out;
-    margin: 0;
+    line-height: 1.6;
 }
 
-h2 {
-    font-family: 'Visby Round Extra Bold', sans-serif;
-    margin-bottom: 30px;
-    font-size: 30px;
-    color: #1d1d1f;
-}
-
-input {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    outline: none;
-    text-align: center;
-    font-size: 16px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-input:focus {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.container {
+    max-width: 1200px;
     margin: 0 auto;
-    width: 90%;
-    max-width: 400px;
+    padding: 20px;
 }
 
-li {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-    color: #333;
-    font-family: 'Visby Round Regular', sans-serif;
-}
-
-li:hover {
-    background: #f0f0f5;
-    transform: translateX(5px);
-}
-
-#schedule {
-    margin-top: 20px;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Visby Round Regular', sans-serif;
-}
-
-th, td {
-    padding: 12px;
+header {
     text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    background-color: #003366;
+    color: white;
+    border-radius: 5px;
+}
+
+.search-section {
+    margin-bottom: 30px;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#search-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 12px 24px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search-button:hover {
+    background-color: #002244;
+}
+
+.search-results {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: none;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.module-details {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.module-details h2 {
+    margin-bottom: 20px;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 10px;
+}
+
+.info-message {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#module-code {
+    background-color: #eee;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+#exam-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#exam-table th, #exam-table td {
+    padding: 12px 15px;
+    text-align: left;
     border-bottom: 1px solid #ddd;
-    color: #333;
 }
 
-th {
-    background: #f0f0f5;
-    color: #333;
+#exam-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+#exam-table tr:hover {
+    background-color: #f9f9f9;
 }
 
-div#schedule h3 {
-    font-family: 'Visby Round Heavy', sans-serif;
-    color: #1d1d1f;
+.highlight {
+    background-color: #ffffcc;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-    h2 {
-        font-size: 24px;
-    }
+.selected-modules {
+    display: none;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
 
-    input {
-        width: 90%;
-        font-size: 14px;
-    }
+.selected-module {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6f2ff;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 3px solid #003366;
+}
 
-    ul {
-        width: 90%;
-    }
+.remove-module {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    table {
-        font-size: 14px;
-    }
+.remove-module:hover {
+    background-color: #ff3333;
+}
 
-    th, td {
-        padding: 10px;
-    }
+.download-button {
+    display: none;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
 
-    #schedule {
-        padding: 10px;
-    }
+.download-button:hover {
+    background-color: #45a049;
+}
 
-    li {
-        font-size: 14px;
-    }
+.module-checkbox {
+    margin-right: 10px;
+}
+
+/* Add these styles for the exam timetable */
+
+.exam-timetable {
+    display: none;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timetable th {
+    background-color: #003366;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.timetable td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.timetable .new-date {
+    border-top: 2px solid #003366;
+}
+
+.timetable .module-name {
+    font-weight: bold;
+    color: #003366;
+}
+
+.timetable tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Add a title for the timetable section */
+.exam-timetable::before {
+    content: "Your Exam Schedule";
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 10px;
+}
+
+/* Clash detection styling */
+tr.clash {
+    background-color: rgba(255, 50, 50, 0.2);
+}
+
+tr.clash:hover {
+    background-color: rgba(255, 50, 50, 0.3);
+}
+
+tr.clash td {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.clash-summary {
+    background-color: #fff3f3;
+    border: 1px solid #d32f2f;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.clash-summary h3 {
+    color: #d32f2f;
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.clash-summary p {
+    margin-bottom: 0;
+    font-size: 14px;
 }

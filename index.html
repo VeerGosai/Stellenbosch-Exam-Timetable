@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Schedule</title>
+    <title>Exam Calendar</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>SU 2025 Semester 1 Exam Timetable</h2>
-    <input type="text" id="search" placeholder="Search for a module">
-    <ul id="results"></ul>
-    <div id="schedule"></div>
-
+    <div class="container">
+        <header>
+            <h1>Stellenbosch University Exam Calendar</h1>
+        </header>
+        
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for your module...">
+                <button id="search-button">Search</button>
+            </div>
+            <div id="search-results" class="search-results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+        
+        <!-- New section for selected modules -->
+        <div id="selected-modules" class="selected-modules">
+            <!-- Selected modules will appear here -->
+        </div>
+        
+        <!-- Exam timetable for selected modules -->
+        <div id="exam-timetable" class="exam-timetable">
+            <!-- Timetable for selected modules will appear here -->
+        </div>
+        
+        <!-- Download calendar button -->
+        <button id="download-calendar" class="download-button">Download Calendar (.ics)</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
